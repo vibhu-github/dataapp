@@ -4,7 +4,7 @@ import { Comp1Component } from './component/comp1/comp1.component';
 import { Comp2Component } from './component/comp2/comp2.component';
 
 const routes: Routes = [{ path: '', component:Comp1Component},
-{ path: 'comp2', component: Comp2Component},];
+{ path: 'comp2', component: Comp2Component, data : {some_data : 'some value'}},];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

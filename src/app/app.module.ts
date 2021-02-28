@@ -15,6 +15,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import {MatButtonModule} from '@angular/material/button';
+import { DataServiceService } from './service/data-service.service';
+
 
 @NgModule({
 declarations: [
@@ -35,12 +38,13 @@ FlexLayoutModule,
 MatFormFieldModule,
     MatInputModule,
 
-MatTableModule
+MatTableModule,
+MatButtonModule
 ],
 
 
 
-providers: [],
+providers: [DataServiceService],
 bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,21 @@
 table {
-    width: 100%;
-  }
-  th.mat-sort-header-sorted {
-    color: black;
-  }
+  border: 1px solid;
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-paginator-outer-container{
+    float: left;
+}
+input{
+  width:20px;
+}
+.highlight{
+  background: #42A948; /* green */
+}
+::ng-deep mat-form-field .mat-form-field-infix {
+  width: initial;
+} 
