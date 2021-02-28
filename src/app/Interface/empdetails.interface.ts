@@ -5,4 +5,5 @@ export interface EmpDetails {
     employee_age:number,
     createdAt:Date,
     updatedAt:Date
+    getdetails:any
     }

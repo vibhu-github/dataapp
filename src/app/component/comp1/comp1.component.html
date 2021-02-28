@@ -8,14 +8,14 @@
      
        <ng-container matColumnDef="id">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Id<br> <mat-form-field>
-            <input matInput type="text" (keyup)="doFilter($event.target.value)" >
+            <input matInput type="text" (keyup)="searchTerm$.next($event.target.value)" >
           </mat-form-field></mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
       </ng-container>
 
 
       <ng-container matColumnDef="employee_name" >
-          <mat-header-cell *matHeaderCellDef mat-sort-header  > Name
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Name
             <mat-form-field>
               <input matInput type="text" (keyup)="doFilter($event.target.value)"  >
            </mat-form-field>
@@ -63,14 +63,19 @@
           </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.updatedAt|date}} </mat-cell>
         </ng-container>
+        
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"  [ngClass]="{'highlight': selectedRowIndex == row.id}"
-      (click)="highlight(row)" (change)=" getData($event)"
+      <mat-row *matRowDef="let row; columns: displayedColumns;"  
+      (click)="highlight(row)"
       ></mat-row>
+      <ng-container matColumnDef="getdetails">
+        <mat-header-cell *matHeaderCellDef> Details </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" (click)="getRecord(element.id)">Get Details</button> </mat-cell>
+        </ng-container>
     </mat-table>
-    <button mat-button color="primary"   (click)="onClick()">Click here</button>
-  </div>
+    <!-- <button mat-button color="primary"   (click)="onClick(row)">Click here</button>
+  </div> -->
 
   <!-- <mat-paginator #paginator [pageSize]="4" [pageSizeOptions]="[3, 6, 7]" showFirstLastButtons></mat-paginator> -->
   <mat-paginator [pageSize]="3" [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons></mat-paginator>

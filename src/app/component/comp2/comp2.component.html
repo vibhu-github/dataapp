@@ -1,45 +1,24 @@
-<mat-table [dataSource]="dataSource" matSort   class="mat-elevation-z8">
-
-   
-    
-
-    <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Id</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-    </ng-container>
-
-
-    <ng-container matColumnDef="employee_name" >
-        <mat-header-cell *matHeaderCellDef mat-sort-header  > Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.employee_name}} </mat-cell>
-    </ng-container>
-
-
-    <ng-container matColumnDef="employee_salary">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Salary </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.employee_salary}} </mat-cell>
-    </ng-container>
-
-
-    <ng-container matColumnDef="employee_age">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Age </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.employee_age}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="createdAt">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Created At </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.createdAt|date}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="updatedAt">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Updated At </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.updatedAt|date}} </mat-cell>
-      </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-
-
-  
-
+<div class="my-3 mx-3">
+    <h5>Employee Details based on Id</h5>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Salary</th>
+            <th>Age</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+        </tr>
+    </thead><tbody>
+        <tr *ngFor='let x of list1'>
+            <th>{{x.id}}</th>
+            <th>{{x.employee_name}}</th>
+            <th>{{x.employee_salary}}</th>
+            <th>{{x.employee_age}}</th>
+            <th>{{x.createdAt}}</th>
+            <th>{{x.updatedAt}}</th>
+        </tr>
+    </tbody>
+    </table>
+</div>

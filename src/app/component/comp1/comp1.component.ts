@@ -6,6 +6,7 @@ import { MatPaginator,PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort} from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -14,21 +15,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./comp1.component.css']
 })
 export class Comp1Component implements AfterViewInit {
-  id:number;
+  id;
   selectedRowIndex = -1;
   ELEMENT_DATA: Employee[][] = [];
-  displayedColumns: string[] = ['id', 'employee_name', 'employee_salary', 'employee_age', 'createdAt', 'updatedAt'];
+  displayedColumns: string[] = ['id', 'employee_name', 'employee_salary', 'employee_age', 'createdAt', 'updatedAt','getdetails'];
   // dataSource = new MatTableDataSource([this.ELEMENT_DATA]);
   dataSource = new MatTableDataSource([]);
-
+  public searchTerm$ = new Subject<string>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   public paginatorLength!: number;
   public paginatorPageIndex!: number;
   public currentPage!: Employee[][];
 
-  constructor(private _ds: DataServiceService,private route:Router) { 
-    
+  constructor(private _ds: DataServiceService,private router:Router) { 
+    // this._ds.shareDataSubject.subscribe(res=>{
+    //   this.id=res
+    //   console.log('id is '+res)
+    // })
     
   
   }
@@ -68,18 +72,30 @@ export class Comp1Component implements AfterViewInit {
  this.dataSource.filter = value;
    
   }
-  onClick(){
-    // this.route.navigate(['comp2',{id:this.id}]);
-    
-      this._ds.sendDataToOtherComponent('id')
+  // onClick(row){
+  //   // console.log(uname.value)
+  //   // this._ds.shareDataSubject.next(uname.value)
+  //   this._ds.nameSearch(row);
+     
   
     
-    }
+  //   }
   highlight(row){
     this.selectedRowIndex = row.id;
     console.log('Row clicked: ', row);
 }
-
+getRecord(id:any):void{
+  
+  
+  this._ds.getIndividualSearches(id).pipe(
+    pluck('data')
+  ).subscribe(
+  (response:any) => {;
+  this.router.navigate(['welcome', id])
+ 
+  this._ds.getProject(response)
+  
+  })}
 
 }
  

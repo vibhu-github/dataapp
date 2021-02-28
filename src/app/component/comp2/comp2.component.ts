@@ -3,7 +3,7 @@ import { filter, pluck, switchMap, takeLast, toArray} from 'rxjs/operators';
 import { Employee } from 'src/app/Interface/emp.interface';
 import { EmpDetails } from 'src/app/Interface/empdetails.interface';
 import { DataServiceService } from 'src/app/service/data-service.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Params } from '@angular/router';
 
 @Component({
   selector: 'app-comp2',
@@ -11,42 +11,41 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./comp2.component.css']
 })
 export class Comp2Component implements OnInit {
-  dataSource:Employee[];
-  id:number
-
-  displayedColumns: string[] = ['id', 'employee_name', 'employee_salary', 'employee_age','createdAt','updatedAt'];
+  list1:Employee[];
   
-  constructor(private _ds:DataServiceService) { 
+  constructor(private _ds:DataServiceService,private route:ActivatedRoute) { 
+    // this._ds.shareDataSubject.subscribe(res=>{
+    //   // this.id=res
+    //   console.log('id is '+JSON.stringify(res))
+      
+      
+    // })
     
     }
   ngOnInit(): void {
-    {    }
-}
+    this.route.params.subscribe((data: Params)  => {
+      if (data && data.id) {
+        this._ds.getProject(data.id)
+          .subscribe(project => {
+              console.log('data in 2',project);
 
-
-passData(){
-  this._ds.shareDataSubject.subscribe(res=>{
-    this.id=res
-    console.log('id is '+res)
-  })
-}
-
-
-  }
-  // getData(id:any):void{
-  //   this._ds.getIndividualSearches(id).pipe(
-  //     pluck('data')
-      
-  //   ).subscribe(res=>{
-  //     console.log('data of second response'+res)
-  //     this.dataSource=res as any
-  //   })
-  
-  
-
- 
-  
+              this.list1=project;
+              
+              
+              // let keys = Object.keys(this.list1);
+              // let values=Object.values(this.list1);
+              // console.log('list data'+keys)
+              // console.log('list values'+values)
+              
+        });
+      }
+    });
+    
+      }
   
 
 
 
+
+  
+ }
