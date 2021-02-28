@@ -18,4 +18,5 @@ input{
 }
 ::ng-deep mat-form-field .mat-form-field-infix {
   width: initial;
+  color: black;
 } 

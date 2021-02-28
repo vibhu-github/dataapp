@@ -11,40 +11,40 @@ import { Comp2Component } from './component/comp2/comp2.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { DataServiceService } from './service/data-service.service';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
-declarations: [
-AppComponent,
-HeaderComponent,
-FooterComponent,
-Comp1Component,
-Comp2Component,
-],
-imports: [
-BrowserModule,
-AppRoutingModule,
-HttpClientModule,
-BrowserAnimationsModule,
-MaterialModule,
-FormsModule,
-FlexLayoutModule,
-MatFormFieldModule,
-    MatInputModule,
-
-MatTableModule,
-MatButtonModule
-],
-
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        Comp1Component,
+        Comp2Component,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        MatTableModule,
+        MatButtonModule
+    ],
 
 
-providers: [DataServiceService],
-bootstrap: [AppComponent]
+
+    providers: [DataServiceService],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
