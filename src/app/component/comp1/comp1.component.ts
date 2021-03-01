@@ -1,8 +1,8 @@
-import { AfterViewInit, Component,ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { Employee } from 'src/app/Interface/emp.interface';
 import { pluck } from 'rxjs/operators';
 import { DataServiceService } from 'src/app/service/data-service.service';
-import { MatPaginator} from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
@@ -15,7 +15,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./comp1.component.css']
 })
 export class Comp1Component implements AfterViewInit {
-  id?: any;
+  errorApi = false;
+  d?: any;
   selectedRowIndex = -1;
   ELEMENT_DATA: Employee[][] = [];
   displayedColumns: string[] = ['id', 'employee_name', 'employee_salary', 'employee_age', 'createdAt', 'updatedAt', 'getdetails'];
@@ -54,19 +55,25 @@ export class Comp1Component implements AfterViewInit {
   }
 
   getRecord(id: any): void {
-    this._ds.getIndividualSearches(id).pipe(
+
+    this._ds.getData(id).pipe(
       pluck('data')
     ).subscribe(
       (response: any) => {
         ;
         this.router.navigate(['welcome', id])
 
-        this._ds.getProject(response)
+        this._ds.getData(response)
 
-      })
+      }), (error: any) => {
+        this.errorApi = true;
+        console.log('Error state from API:,', error)
+      }
+
+
   }
-
 }
+
 
 
 

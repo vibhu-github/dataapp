@@ -71,9 +71,9 @@
       ></mat-row>
       <ng-container matColumnDef="getdetails">
         <mat-header-cell *matHeaderCellDef> Details </mat-header-cell>
-        <mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" (click)="getRecord(element.id)">Get Details</button> </mat-cell>
+        <mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" (click)="getRecord(element.id)" >Get Details</button> </mat-cell>
         </ng-container>
-    </mat-table>
+        </mat-table>
     
   <mat-paginator [pageSize]="3" [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons></mat-paginator>
 

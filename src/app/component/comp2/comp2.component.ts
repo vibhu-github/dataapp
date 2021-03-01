@@ -1,9 +1,7 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { filter, pluck, switchMap, takeLast, toArray } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
 import { Employee } from 'src/app/Interface/emp.interface';
-import { EmpDetails } from 'src/app/Interface/empdetails.interface';
 import { DataServiceService } from 'src/app/service/data-service.service';
-import { ActivatedRoute, ParamMap, Params } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-comp2',
@@ -19,7 +17,7 @@ export class Comp2Component implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       if (data && data.id) {
-        this._ds.getProject(data.id)
+        this._ds.getData(data.id)
           .subscribe(project => {
             console.log('data in 2', project);
             this.list1 = project;
@@ -28,10 +26,5 @@ export class Comp2Component implements OnInit {
     });
 
   }
-
-
-
-
-
 
 }
